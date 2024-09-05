@@ -55,7 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (content === "Clear") {
                 value.innerHTML = "";
             } else {
-                value.innerHTML += content;
+                // Limit input length to 12 characters
+                if (value.innerHTML.length < 12) {
+                    value.innerHTML += content;
+                }
             }
         }
     }
@@ -72,7 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const key = event.key;
 
         if (/^\d$/.test(key) || ['+', '-', '*', '/'].includes(key)) {
-            handleButtonClick(key);
+            // Limit input length to 12 characters
+            if (value.innerHTML.length < 12) {
+                handleButtonClick(key);
+            }
         } else if (key === 'Enter') {
             handleButtonClick("=");
         } else if (key === 'Escape') {
